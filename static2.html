@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<link rel="stylesheet" href='rzslider.css' />
+	    <link rel='stylesheet' Href='bootstrap.min.css' />
+	    <link rel='stylesheet' Href='other.css' />
+		<script src="d3.js"></script>
+		<script src="angular.min.1.4.3.js"></script>
+		<script src="rzslider.js"></script>
+		<script src="ui-bootstrap-tpls-0.14.3.min.js"></script>
+				
+		<script language='JavaScript'>			
+			var app = angular.module('rzSliderDemo', ['rzModule', 'ui.bootstrap']);
+			//Shiny.onInputChange("Robject", this.series.name);
+		app.controller('MainCtrl', function ($scope, $rootScope, $timeout, $modal) {
+		//Minimal slider config
+		$scope.minSlider = {
+        value: 10
+    };
+
+});
+		</script>
+	</head>
+	
+	<body>
+	
+<div ng-app="rzSliderDemo">
+    <div ng-controller="MainCtrl" class="wrapper">
+        <header>
+             <h1>AngularJS Touch Slider</h1>
+
+        </header>
+        <article>
+             <h2>Simple slider</h2>
+Model:
+            <input type="number" ng-model="minSlider.value" />
+            <br/>
+            <rzslider rz-slider-model="minSlider.value"></rzslider>
+    </div>
+</div>
+
+
+		
+	</body>
+	
+</html>

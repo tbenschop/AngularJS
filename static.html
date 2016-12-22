@@ -1,24 +1,74 @@
-<script src="d3.js"></script>
-<script src="angular.min.1.4.3.js"></script>
-<script language='JavaScript'>
-if(typeof angular == "undefined") {
-  console.log("angular == undefined");
-} else {
-  console.log("angular == defined");
-  console.log(angular.version.full)
-}
-if (window.jQuery) {  
-  console.log("jQuery == defined");
-  console.log(jQuery.fn.jquery);
-} else {
-  console.log("jQuery == undefined");
-}
-d3.select("body")
-  .attr("ng-app","")
-</script>
-<p>Input something in the input box:</p>
-<p>Name: <input type="text" ng-model="name"></p>
-<p ng-bind="name"></p>
-<h4>Name: <input type="text" ng-model="name2"></h4>
-<h4>You wrote: {{name2}}</h4>
-<rzslider rz-slider-model="slider.value"></rzslider>
+<html>
+	<head>
+		<link rel="stylesheet" href='rzslider.css' />
+	
+		<script src="d3.js"></script>
+		<script src="angular.min.1.4.3.js"></script>
+		<script src="rzslider.js"></script>
+				
+		<script language='JavaScript'>
+			<!-- if(typeof angular == "undefined") { -->
+			  <!-- console.log("angular == undefined"); -->
+			<!-- } else { -->
+			  <!-- console.log("angular == defined"); -->
+			  <!-- console.log(angular.version.full) -->
+			<!-- } -->
+			<!-- if (window.jQuery) {   -->
+			  <!-- console.log("jQuery == defined"); -->
+			  <!-- console.log(jQuery.fn.jquery); -->
+			<!-- } else { -->
+			  <!-- console.log("jQuery == undefined"); -->
+			<!-- } -->
+			
+			<!-- d3.select("body").attr("ng-app",""); -->
+			
+			var myApp = angular.module('myapp', ['rzModule']);
+
+			myApp.controller('TestController', TestController);
+
+			function TestController() {
+			  var vm = this;
+			  vm.lastSliderUpdated = '';
+
+			  vm.myChangeListener = function(sliderId) {
+				console.log(sliderId, 'has changed with ', vm.slider.value);
+				vm.lastSliderUpdated = vm.slider.value;
+			  };
+
+			  vm.slider = {
+				value: 100,
+				options: {
+				  floor: 0,
+				  ceil: 500,
+				  id: 'sliderA',
+				  onChange: vm.myChangeListener
+				}
+			  };
+			}
+
+		</script>
+	</head>
+	
+	<body>
+	
+		<div ng-app="myapp">
+		  <div ng-controller="TestController as vm">
+			<p><b>Last updated:</b> {{vm.lastSliderUpdated}}</p>
+			<rzslider rz-slider-model="vm.slider.value" rz-slider-options="vm.slider.options"></rzslider>
+		  </div>
+		  
+		<p>Input something in the input box:</p>
+		<p>Name: <input type="text" ng-model="name"></p>
+		<p ng-bind="name"></p>
+		<h4>Name: <input type="text" ng-model="name2"></h4>
+		<h4>You wrote: {{name2}}</h4>
+		<!-- <rzslider rz-slider-model="slider.value"></rzslider> -->
+		  
+		  
+		</div>
+
+
+		
+	</body>
+	
+</html>
