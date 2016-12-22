@@ -1,0 +1,17 @@
+<script src="d3.js"></script>
+<script src="angular.min.1.4.3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
+<script src="https://rawgit.com/rzajac/angularjs-slider/master/dist/rzslider.js"></script>
+
+<script language='JavaScript'>
+
+d3.select("body")
+  .attr("ng-app","")
+</script>
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p>
+<p ng-bind="name"></p>
+<h4>Name: <input type="text" ng-model="name2"></h4>
+<h4>You wrote: {{name2}}</h4>
+<rzslider rz-slider-model="slider.value"></rzslider>
